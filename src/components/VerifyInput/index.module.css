@@ -1,0 +1,21 @@
+.inputs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+}
+
+.inputWrap {
+    max-width: 323px;
+    width: 100%;
+}
+
+.inputWrap input {
+    padding: 0 20px;
+    width: 62px;
+    height: 79px;
+    margin-right: 15px;
+
+    font-size: 30px;
+}

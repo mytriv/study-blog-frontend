@@ -1,0 +1,29 @@
+.page {
+    width: 100vw;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content {
+    max-width: 635px;
+    width: 100%;
+
+    text-align: center;
+
+}
+
+.btnWrapper {
+    margin-top: 170px;
+}
+
+.verifyWrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-top: 55px;
+
+}
