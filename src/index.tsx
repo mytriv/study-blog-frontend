@@ -4,10 +4,14 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import "./libs/initInterceptors";
+import {Provider as StoreProvider} from 'react-redux';
+import {store} from "./store/store";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+      <StoreProvider store={store}>
+        <App />
+      </StoreProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

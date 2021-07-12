@@ -8,16 +8,20 @@ import {useHistory} from "react-router";
 
 export const VerifyPage  = () => {
 
-    const [verify, setVerify]  = useState("");
+    const [verify, setVerifyCode]  = useState("");
     const history = useHistory();
 
     const onVerifyClick = async () => {
         try {
             await axios.post("/api/v1/auth/basic/verify-email", {code: verify});
-            history.push("#");
+            history.push("/home");
         } catch (error) {
             console.log("error: ", error.response.data);
         }
+    }
+
+    const updateCode = (verificationCode: string) => {
+        setVerifyCode(verificationCode)
     }
 
     return (
@@ -28,7 +32,7 @@ export const VerifyPage  = () => {
                 </div>
                 <div>
                     <div className={styles.verifyWrapper}>
-                        <VerifyInput  />
+                        <VerifyInput updateCode={updateCode} />
                     </div>
                 </div>
                 <div className={styles.btnWrapper}>

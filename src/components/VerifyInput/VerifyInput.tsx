@@ -1,8 +1,11 @@
 import styles from "./index.module.css";
 import React, { useRef, useState} from "react";
 
-export const VerifyInput = () => {
+type Props = {
+    updateCode: (str: string) => void;
+}
 
+export const VerifyInput = ({updateCode}: Props) => {
 
     const [verificationCode, setVerification] = useState(["","","",""]);
 
@@ -11,17 +14,19 @@ export const VerifyInput = () => {
     const input3Ref = useRef<any>();
     const input4Ref = useRef<any>();
 
+
     const onChangeHandler = (ref: any, index: number) => {
         return (event: React.ChangeEvent<HTMLInputElement>) => {
             let updatedVerificationCode = [...verificationCode];
 
             updatedVerificationCode[index] = event.target.value;
             setVerification(updatedVerificationCode);
+/*            console.log(updatedVerificationCode, setVerification);*/
+            updateCode(updatedVerificationCode.join(""))
 
             if (event.target.value === "" || !ref) {
                 return
             }
-
             ref.current.focus();
         }
     }
@@ -32,7 +37,7 @@ export const VerifyInput = () => {
 
                 <input ref={input1Ref}
                        value={verificationCode[0]}
-                       onChange={ onChangeHandler(input2Ref, 0) }
+                       onChange={  onChangeHandler(input2Ref, 0) }
                        type="text" maxLength={1} size={50}  autoFocus={true}/>
 
                 <input ref={input2Ref} value={verificationCode[1]}

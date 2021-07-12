@@ -10,6 +10,8 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import {HomePage} from "./pages/HomePage/HomePage";
+import {IsUserAuthGuard} from "./guard/IsUserAuthGuard/IsUserAuthGuard";
 
 function App() {
   return (<>
@@ -22,7 +24,14 @@ function App() {
           <SignupPage />
         </Route>
         <Route path={"/auth/verify"}>
-          <VerifyPage />
+          <IsUserAuthGuard>
+            <VerifyPage />
+          </IsUserAuthGuard>
+        </Route>
+        <Route path={"/home"}>
+          <IsUserAuthGuard>
+            <HomePage />
+          </IsUserAuthGuard>
         </Route>
       </Switch>
     </Router>
