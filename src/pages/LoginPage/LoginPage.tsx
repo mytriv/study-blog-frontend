@@ -8,6 +8,9 @@ import {useEffect, useState} from "react";
 import styles from "./index.module.css"
 import axios from "axios";
 import {useHistory} from "react-router";
+import {useDispatch, useSelector} from "react-redux";
+import {Store} from "../../store/store";
+import {userSlice} from "../../store/user/user.slice";
 
 export const LoginPage  = () => {
 /*
@@ -39,7 +42,6 @@ export const LoginPage  = () => {
             console.log('error: ', error.response.data);
         }
     }
-
 
     return (
         <div className={styles.page}>
