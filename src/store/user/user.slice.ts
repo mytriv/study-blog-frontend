@@ -6,6 +6,7 @@ export type UserState = {
     me: User;
     pending: boolean;
     isLoaded: boolean;
+    isEmailVerified: boolean;
 }
 
 const initialState: UserState = {
@@ -13,6 +14,7 @@ const initialState: UserState = {
     me: null,
     pending: false,
     isLoaded: false,
+    isEmailVerified: false,
 };
 
 export const userSlice = createSlice({
@@ -26,13 +28,13 @@ export const userSlice = createSlice({
         },
         getMeSuccess: (state, action: PayloadAction<User>) => {
             return {
-                ...state, pending: false, me: action.payload, isLoaded: true
+                ...state, pending: false, me: action.payload, isLoaded: true, isEmailVerified: true
             }
         },
         getMeFail: (state) => {
             return {
                 ...state, pending: false, isLoaded: true
             }
-        }
+        },
     }
 })
