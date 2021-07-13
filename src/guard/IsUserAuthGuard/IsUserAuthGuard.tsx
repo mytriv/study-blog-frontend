@@ -20,7 +20,7 @@ export const IsUserAuthGuard = (props: any) => {
         if (me === null && pending === false && isLoaded === true) {
             history.replace("/auth/login")
         }
-        else if (isEmailVerified === false && isLoaded === true) {
+        else if (isEmailVerified === false && isLoaded === false) {
             history.replace("/auth/verify")
         }
         else if (isEmailVerified === true && isLoaded === true) {
