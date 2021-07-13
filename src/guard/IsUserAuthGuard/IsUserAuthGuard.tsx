@@ -5,13 +5,14 @@ import {useEffect} from "react";
 import {userSlice} from "../../store/user/user.slice";
 import {getUserThunk} from "../../store/user/getUser.thunk";
 import {stat} from "fs";
+import {User} from "../../api/user/models/user.model";
 
 
 export const IsUserAuthGuard = (props: any) => {
-    const me = useSelector<Store>( state => state.user.me)
+
+    const me = useSelector<Store>( state => state.user.me) as User
     const pending = useSelector<Store>( state => state.user.pending)
     const isLoaded = useSelector<Store>( state => state.user.isLoaded)
-    const isEmailVerified = useSelector<Store>(state => state.user.isEmailVerified)
 
     const dispatch = useDispatch()
     const history = useHistory();
@@ -20,16 +21,16 @@ export const IsUserAuthGuard = (props: any) => {
         if (me === null && pending === false && isLoaded === true) {
             history.replace("/auth/login")
         }
-        else if (isEmailVerified === false && isLoaded === false) {
+        if ( me !== null && me.isEmailVerified === false && isLoaded === true) {
             history.replace("/auth/verify")
         }
-        else if (isEmailVerified === true && isLoaded === true) {
+        if ( me !== null && me.isEmailVerified === true && isLoaded === true) {
             history.replace("/home")
         }
-        else if (me === null && isLoaded === false && pending === false) {
+        if (me === null && isLoaded === false && pending === false) {
             dispatch(getUserThunk())
         }
-    }, [me, pending, isLoaded, isEmailVerified]);
+    }, [me, pending, isLoaded]);
 
 
     return (

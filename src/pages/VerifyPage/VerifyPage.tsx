@@ -5,15 +5,19 @@ import {VerifyInput} from "../../components/VerifyInput/VerifyInput";
 import axios from "axios";
 import {useState} from "react";
 import {useHistory} from "react-router";
+import {useDispatch} from "react-redux";
+import {userSlice} from "../../store/user/user.slice";
 
 export const VerifyPage  = () => {
 
     const [verify, setVerifyCode]  = useState("");
     const history = useHistory();
+    const dispatch = useDispatch()
 
     const onVerifyClick = async () => {
         try {
             await axios.post("/api/v1/auth/basic/verify-email", {code: verify});
+            dispatch(userSlice.actions.setEmailVerified())
             history.push("/home");
         } catch (error) {
             console.log("error: ", error.response.data);
