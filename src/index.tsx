@@ -6,11 +6,17 @@ import reportWebVitals from './reportWebVitals';
 import "./libs/initInterceptors";
 import {Provider as StoreProvider} from 'react-redux';
 import {store} from "./store/store";
+import {
+    BrowserRouter as Router,
+} from "react-router-dom";
+import {useUserLoad} from "./sharedHooks/useUserLoad.hook";
 
 ReactDOM.render(
   <React.StrictMode>
       <StoreProvider store={store}>
-        <App />
+          <Router>
+              <App />
+          </Router>
       </StoreProvider>
   </React.StrictMode>,
   document.getElementById('root')

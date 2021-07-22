@@ -7,9 +7,17 @@ axios.interceptors.response.use(response => response, (error) => {
     if (status !== 401) {
         return Promise.reject(error);
     }
-
+    const isAuthPages = window.location.pathname.includes("/auth/login") || window.location.pathname.includes("/auth/signup");
+    //console.log(isAuthPages)
     if (error.response?.config.url.includes("/api/v1/auth/refresh")){
-        return  window.location.href  = "/auth/login";
+
+        return Promise.reject(error)
+            .then(()=>{
+                if(isAuthPages){
+                    return
+                }
+                window.location.href  = "/auth/login";
+            });
     }
 
     return axios.post("/api/v1/auth/refresh", {})

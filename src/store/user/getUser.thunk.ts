@@ -1,5 +1,4 @@
 import {userSlice} from "./user.slice";
-import axios from "axios";
 import {userService} from "../../api/user/user.service";
 
 export const getUserThunk = () => {
@@ -9,8 +8,8 @@ export const getUserThunk = () => {
             const me = await userService.getMe()
             dispatch(userSlice.actions.getMeSuccess(me.data))
         } catch (error) {
-            console.log('error: ', error.response.data);
-            dispatch(userSlice.actions.getMeFail())
+            //console.log('error: ', error.response.data);
+           dispatch(userSlice.actions.getMeFail())
         }
     }
 }

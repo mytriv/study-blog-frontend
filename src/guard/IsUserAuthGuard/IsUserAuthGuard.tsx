@@ -2,11 +2,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {Store} from "../../store/store";
 import {useHistory} from "react-router";
 import {useEffect} from "react";
-import {userSlice} from "../../store/user/user.slice";
-import {getUserThunk} from "../../store/user/getUser.thunk";
-import {stat} from "fs";
 import {User} from "../../api/user/models/user.model";
-
 
 export const IsUserAuthGuard = (props: any) => {
 
@@ -27,10 +23,8 @@ export const IsUserAuthGuard = (props: any) => {
         if ( me !== null && me.isEmailVerified === true && isLoaded === true) {
             history.replace("/home")
         }
-        if (me === null && isLoaded === false && pending === false) {
-            dispatch(getUserThunk())
-        }
-    }, [me, pending, isLoaded]);
+
+    }, [me, pending, isLoaded, history]);
 
 
     return (

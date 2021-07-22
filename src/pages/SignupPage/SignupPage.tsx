@@ -7,9 +7,15 @@ import {ReactComponent as ShowPassword} from "../../assets/icons/showPassword.sv
 import styles from "./index.module.css"
 import {useState} from "react";
 import axios from "axios";
-import {Redirect, useHistory} from "react-router";
+import {useHistory} from "react-router";
+import {useUserAuth} from "../../sharedHooks/useUserAuth.hook";
+import {useUserLoad} from "../../sharedHooks/useUserLoad.hook";
 
 export const SignupPage  = () => {
+
+    useUserAuth()
+
+    const {getMe} = useUserLoad(true)
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -18,6 +24,7 @@ export const SignupPage  = () => {
     const onSignupClick = async () => {
         try {
             await axios.post("/api/v1/auth/basic/signup", {email, password});
+            getMe();
             history.push("/auth/login");
 
         } catch (error) {

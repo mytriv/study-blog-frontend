@@ -1,6 +1,5 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {User} from "../../api/user/models/user.model";
-import thunk from "redux-thunk";
 
 export type UserState = {
     me: User;

@@ -1,21 +1,21 @@
 import React from 'react';
-//import logo from './logo.svg';
 import './App.css';
 import {LoginPage} from "./pages/LoginPage";
 import {SignupPage} from "./pages/SignupPage";
 import {VerifyPage} from "./pages/VerifyPage";
 import {
-  BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 import {HomePage} from "./pages/HomePage/HomePage";
 import {IsUserAuthGuard} from "./guard/IsUserAuthGuard/IsUserAuthGuard";
+import {useUserLoad} from "./sharedHooks/useUserLoad.hook";
 
 function App() {
+
+  useUserLoad()
+
   return (<>
-    <Router>
       <Switch>
         <Route path={"/auth/login"}>
           <LoginPage />
@@ -34,7 +34,6 @@ function App() {
           </IsUserAuthGuard>
         </Route>
       </Switch>
-    </Router>
   </>);
 }
 
