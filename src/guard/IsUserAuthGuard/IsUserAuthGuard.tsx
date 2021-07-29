@@ -1,4 +1,4 @@
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {Store} from "../../store/store";
 import {useHistory} from "react-router";
 import {useEffect} from "react";
@@ -10,7 +10,6 @@ export const IsUserAuthGuard = (props: any) => {
     const pending = useSelector<Store>( state => state.user.pending)
     const isLoaded = useSelector<Store>( state => state.user.isLoaded)
 
-    const dispatch = useDispatch()
     const history = useHistory();
 
     useEffect(() => {
@@ -23,7 +22,6 @@ export const IsUserAuthGuard = (props: any) => {
         if ( me !== null && me.isEmailVerified === true && isLoaded === true) {
             history.replace("/home")
         }
-
     }, [me, pending, isLoaded, history]);
 
 

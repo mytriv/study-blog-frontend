@@ -8,7 +8,6 @@ export const getUserThunk = () => {
             const me = await userService.getMe()
             dispatch(userSlice.actions.getMeSuccess(me.data))
         } catch (error) {
-            //console.log('error: ', error.response.data);
            dispatch(userSlice.actions.getMeFail())
         }
     }

@@ -1,0 +1,20 @@
+.page {
+    display: flex;
+    flex-direction: column;
+
+    justify-content: left;
+}
+
+.content {
+    display: flex;
+
+    text-align: left;
+}
+
+.title {
+    width: 250px;
+}
+
+.input {
+    width: 635px;
+}

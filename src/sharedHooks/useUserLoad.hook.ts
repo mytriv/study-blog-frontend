@@ -7,7 +7,6 @@ export const useUserLoad = (postPonLoading: boolean = false) => {
     const dispatch = useDispatch()
 
     const getMe = () => {
-        console.log("Get user")
         dispatch(getUserThunk())
     }
 

@@ -2,10 +2,10 @@ import styles from "./index.module.css";
 import {ReactElement} from "react";
 
 type Props = {
-    type: 'email' | 'password' | 'text';
+    type: 'email' | 'password' | 'text' | 'url';
     placeholder: string;
-    header: string;
-    value: string;
+    header?: string;
+    value?: string;
     updateValue: (str: string) => void;
     icon?: ReactElement;
     iconRev?: ReactElement;

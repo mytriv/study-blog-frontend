@@ -10,6 +10,8 @@ import {
 import {HomePage} from "./pages/HomePage/HomePage";
 import {IsUserAuthGuard} from "./guard/IsUserAuthGuard/IsUserAuthGuard";
 import {useUserLoad} from "./sharedHooks/useUserLoad.hook";
+import {MyArticlesPage} from "./pages/MyArticlesPage";
+import {ArticleManagementPage} from "./pages/ArticleManagementPage";
 
 function App() {
 
@@ -29,9 +31,15 @@ function App() {
           </IsUserAuthGuard>
         </Route>
         <Route path={"/home"}>
-          <IsUserAuthGuard>
+          {/*<IsUserAuthGuard>*/}
             <HomePage />
-          </IsUserAuthGuard>
+         {/* </IsUserAuthGuard>*/}
+        </Route>
+        <Route path={"/myarticles"}>
+          <MyArticlesPage/>
+        </Route>
+        <Route path={"/management"}>
+          <ArticleManagementPage/>
         </Route>
       </Switch>
   </>);
