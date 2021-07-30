@@ -25,7 +25,7 @@ export const SignupPage  = () => {
         try {
             await axios.post("/api/v1/auth/basic/signup", {email, password});
             getMe();
-            history.push("/auth/login");
+            history.push("/auth/verify");
 
         } catch (error) {
             console.log("error: ", error.response.data);

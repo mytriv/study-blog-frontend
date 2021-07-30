@@ -1,6 +1,7 @@
 .page {
     display: flex;
     flex-direction: column;
+    margin-left: 120px;
 
     justify-content: left;
 }
@@ -17,4 +18,15 @@
 
 .input {
     width: 635px;
+}
+
+.inputTextArea textarea {
+    width: 1200px;
+    height: 500px;
+
+    border-radius: 10px;
+}
+
+.button {
+    margin-top: 30px;
 }

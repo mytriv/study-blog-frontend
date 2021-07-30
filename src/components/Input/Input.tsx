@@ -2,7 +2,7 @@ import styles from "./index.module.css";
 import {ReactElement} from "react";
 
 type Props = {
-    type: 'email' | 'password' | 'text' | 'url';
+    type: 'email' | 'password' | 'text' | 'url' | 'textarea';
     placeholder: string;
     header?: string;
     value?: string;
