@@ -1,5 +1,11 @@
 import axios from "axios";
 
+axios.interceptors.request.use((config) => {
+    config.withCredentials = true
+
+    return config
+})
+
 axios.interceptors.response.use(response => response, (error) => {
     const status = error.response ? error.response.status : null
     console.log(error.response)

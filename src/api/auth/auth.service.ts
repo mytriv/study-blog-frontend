@@ -6,7 +6,7 @@ class AuthService {
     }
 
     login(email: string, password: string) {
-        return axios.post("/api/v1/auth/basic/login", { email, password });
+        return axios.post("/api/v1/auth/basic/login", { email, password }, {withCredentials: true});
     }
 
     verify(code: number) {
