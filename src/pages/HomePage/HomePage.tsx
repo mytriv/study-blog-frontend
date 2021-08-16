@@ -1,13 +1,17 @@
-import {BlogTitle} from "../../components/BlogTitle";
-import {MainArticle} from "../../components/MainArticle";
+import {useHistory} from "react-router";
+import {Button} from "../../components/Button";
 
 
 export const HomePage = () => {
+    const history = useHistory();
+
+    const onMyArticlesClick = () => {
+        history.replace("/myarticles");
+    }
     return (
         <div>
-            <BlogTitle text={"Plane Blog"}/>
-            <MainArticle/>
-            <BlogTitle text={"Last Updates"}/>
+            <Button title={"My Articles"}
+                    onClick={onMyArticlesClick}/>
         </div>
     );
 }

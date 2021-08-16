@@ -19,54 +19,65 @@ export const ArticleManagementPage = () => {
     const onSaveClick = async () => {
         try {
             await axios.post("/api/v1/articles", {title, description, content, mainImageUrl});
-            history.push("/myarticles")
+            history.push("/myarticles");
         } catch (error) {
             console.log('error: ', error.response.data);
         }
     }
 
+    const onBackClick = () => {
+        history.replace("/myarticles")
+    }
+
     return (
         <div className={styles.page}>
-            <SmallLogo logo={"Plane Blog"}/>
-            <div>
-                <div className={styles.content}>
-                    <div className={styles.title}>
-                        <Titles text={"Article title: "}/>
+            <div className={styles.wrapper}>
+                <SmallLogo logo={"Plane Blog"}/>
+                <div>
+                    <div className={styles.content}>
+                        <div className={styles.title}>
+                            <Titles text={"Article title: "}/>
+                        </div>
+                        <div className={styles.input}>
+                            <Input type={"text"} placeholder={"Please enter article title"} value={title} updateValue={setTitle}/>
+                        </div>
                     </div>
-                    <div className={styles.input}>
-                        <Input type={"text"} placeholder={"Please enter article title"} value={title} updateValue={setTitle}/>
+                    <div className={styles.content}>
+                        <div className={styles.title}>
+                            <Titles text={"Article description: "}/>
+                        </div>
+                        <div className={styles.input}>
+                            <Input type={"text"} placeholder={"Please enter article description"} value={description} updateValue={setDescription}/>
+                        </div>
                     </div>
-                </div>
-                <div className={styles.content}>
-                    <div className={styles.title}>
-                        <Titles text={"Article description: "}/>
+                    <div className={styles.content}>
+                        <div className={styles.title}>
+                            <Titles text={"Article image: "}/>
+                        </div>
+                        <div className={styles.input}>
+                            <Input type={"text"} placeholder={"Please enter image url"} value={mainImageUrl} updateValue={setMainImageUrl}/>
+                        </div>
                     </div>
-                    <div className={styles.input}>
-                        <Input type={"text"} placeholder={"Please enter article description"} value={description} updateValue={setDescription}/>
+
+                    <div className={styles.contentCreateArticle}>
+                        <div className={styles.title}>
+                            <Titles text={"Article text: "}/>
+                        </div>
+                        <div className={styles.inputTextArea}>
+                            <textarea onChange={(event) => {setContent(event.target.value)}} name="Article Text" id="Article" placeholder={"Enter your text"}/>
+                        </div>
                     </div>
-                </div>
-                <div className={styles.content}>
-                    <div className={styles.title}>
-                        <Titles text={"Article image: "}/>
-                    </div>
-                    <div className={styles.input}>
-                        <Input type={"url"} placeholder={"Please enter image url"} value={mainImageUrl} updateValue={setMainImageUrl}/>
+                    <div className={styles.buttonBlock}>
+                        <div className={styles.buttonSave}>
+                            <Button title={"Save"} onClick={onSaveClick}/>
+                        </div>
+                        <div className={styles.buttonBack}>
+                            <Button title={"Back"} onClick={onBackClick}/>
+                        </div>
                     </div>
                 </div>
 
-                <div className={styles.contentCreateArticle}>
-                    <div className={styles.title}>
-                        <Titles text={"Article text: "}/>
-                    </div>
-                    <div className={styles.inputTextArea}>
-                        <textarea onChange={(event) => {setContent(event.target.value)}} name="Article Text" id="Article"  ></textarea>
-                    </div>
-                </div>
-                <div className={styles.button}>
-                    <Button title={"Save"} onClick={onSaveClick}/>
-                </div>
             </div>
-            
         </div>
     );
 }

@@ -12,6 +12,7 @@ import {useUserAuth} from "../../sharedHooks/useUserAuth.hook";
 import {useUserLoad} from "../../sharedHooks/useUserLoad.hook";
 
 export const LoginPage  = () => {
+
     useUserAuth()
 
     const {getMe} = useUserLoad(true)
@@ -24,27 +25,48 @@ export const LoginPage  = () => {
         try {
             await axios.post("/api/v1/auth/basic/login", {email, password});
             getMe()
-            history.push("/auth/verify");
+            history.push("/auth/login");
         } catch (error) {
             console.log('error: ', error.response.data);
         }
     }
 
+    const [passwordShown, setPasswordShown] = useState(false);
+
+    const togglePasswordVisiblity = () => {
+        setPasswordShown(passwordShown ? false : true);
+    };
 
     return (
         <div className={styles.page}>
             <div className={styles.content}>
                 <div>
-                    <AuthHeader title={'Log in'} text={"Don’t have an account? Click "} link={'/auth/signup'} linkText={"Signup"}/>
+                    <AuthHeader title={'Log in'}
+                                text={"Don’t have an account? Click "}
+                                link={'/auth/signup'}
+                                linkText={"Signup"}/>
                 </div>
                 <div>
                     <div>
-                        <Input value={email} updateValue={setEmail} header={'Email'} icon={<Mail />} type='email' placeholder='Please enter your email'  />
-                        <Input value={password} updateValue={setPassword} type={'password'} icon={<Password/>} iconRev={<ShowPassword/>} placeholder={'Please enter your password.'} header={'Password'}/>
+                        <Input value={email}
+                               updateValue={setEmail}
+                               header={'Email'}
+                               icon={<Mail />}
+                               type='email'
+                               placeholder='Please enter your email'  />
+
+                        <Input value={password}
+                               updateValue={setPassword}
+                               type={passwordShown ? "text" : "password"}
+                               icon={<Password/>}
+                               iconRev={<ShowPassword onClick={togglePasswordVisiblity}/>}
+                               placeholder={'Please enter your password.'}
+                               header={'Password'}/>
                     </div>
                 </div>
                 <div className={styles.btnWrapper}>
-                    <Button onClick={onLoginClick} title='Next' />
+                    <Button onClick={onLoginClick}
+                            title='Next' />
                 </div>
             </div>
         </div>);
