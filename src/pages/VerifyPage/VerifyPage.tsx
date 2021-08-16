@@ -32,7 +32,8 @@ export const VerifyPage  = () => {
         <div className={styles.page}>
             <div className={styles.content}>
                 <div>
-                    <AuthHeader title={'Verify'} text={"We send a code your email address. Check you email and write a code here"} />
+                    <AuthHeader title={'Verify'}
+                                text={"We send a code your email address. Check you email and write a code here"} />
                 </div>
                 <div>
                     <div className={styles.verifyWrapper}>
@@ -40,7 +41,8 @@ export const VerifyPage  = () => {
                     </div>
                 </div>
                 <div className={styles.btnWrapper}>
-                    <Button onClick={onVerifyClick} title='Go' />
+                    <Button onClick={onVerifyClick}
+                            title='Go' />
                 </div>
             </div>
         </div>);

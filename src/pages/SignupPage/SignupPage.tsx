@@ -36,12 +36,27 @@ export const SignupPage  = () => {
         <div className={styles.page}>
             <div className={styles.content}>
                 <div>
-                    <AuthHeader title={'Sign up'} text={"Have an account? Click "} link={'/auth/login'} linkText={"Login"}/>
+                    <AuthHeader title={'Sign up'}
+                                text={"Have an account? Click "}
+                                link={'/auth/login'}
+                                linkText={"Login"}/>
                 </div>
                 <div>
                     <div>
-                        <Input header={'Email'} value={email} updateValue={setEmail} icon={<Mail />} type='email' placeholder='Please enter your email' />
-                        <Input type={'password'} value={password} updateValue={setPassword} icon={<Password/>} iconRev={<ShowPassword/>} placeholder={'Please enter your password.'} header={'Password'}/>
+                        <Input header={'Email'}
+                               value={email}
+                               updateValue={setEmail}
+                               icon={<Mail />}
+                               type='email'
+                               placeholder='Please enter your email' />
+
+                        <Input type={'password'}
+                               value={password}
+                               updateValue={setPassword}
+                               icon={<Password/>}
+                               iconRev={<ShowPassword/>}
+                               placeholder={'Please enter your password.'}
+                               header={'Password'}/>
                     </div>
                 </div>
                 <div className={styles.btnWrapper}>
