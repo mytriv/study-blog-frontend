@@ -46,7 +46,7 @@ function App() {
             <ArticleManagementPage/>
           </IsUserAuthGuard>
         </Route>
-        <Route path={"/articles/:id/management"}>
+        <Route path={"/articles/:articleId/management"}>
           <IsUserAuthGuard>
             <ArticleManagementPage/>
           </IsUserAuthGuard>

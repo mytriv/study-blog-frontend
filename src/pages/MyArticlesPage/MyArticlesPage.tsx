@@ -11,8 +11,11 @@ export const MyArticlesPage = () => {
     const {articles} = useMyArticleLoad()
     const history = useHistory();
 
-    const onManageClick = () => {
-        history.push("/management")
+    const onCreateClick = () => {
+        history.push("/articles/create")
+    }
+    const onManageClick = (id: number) => {
+        history.push(`/articles/${id}/management`)
     }
     const onBackClick = () => {
         history.replace("/home");
@@ -30,14 +33,14 @@ export const MyArticlesPage = () => {
                                 <div>
                                     <div>{article.title}</div>
                                     <div>{article.description}</div>
-                                    <Button title={"Manage >"} onClick={onManageClick}/>
+                                    <Button title={"Manage >"} onClick={() => {onManageClick(article.id)}}/>
                                 </div>
                             );
                         })
                     }
 
                     <CreateArticleButton
-                        onClick={onManageClick}
+                        onClick={onCreateClick}
                         firstLine={"You have no articles yet"}
                         secondLine={"Click here to create your one"}
                         plus={<Plus/>} />
