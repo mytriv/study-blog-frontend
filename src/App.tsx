@@ -5,7 +5,7 @@ import {SignupPage} from "./pages/SignupPage";
 import {VerifyPage} from "./pages/VerifyPage";
 import {
   Switch,
-  Route
+  Route, Redirect
 } from "react-router-dom";
 import {HomePage} from "./pages/HomePage/HomePage";
 import {IsUserAuthGuard} from "./guard/IsUserAuthGuard/IsUserAuthGuard";
@@ -19,6 +19,9 @@ function App() {
 
   return (<>
       <Switch>
+        <Route exact path="/">
+          <Redirect to="/home" />
+        </Route>
         <Route path={"/auth/login"}>
           <LoginPage />
         </Route>
@@ -31,15 +34,22 @@ function App() {
           </IsUserAuthGuard>
         </Route>
         <Route path={"/home"}>
-          {/*<IsUserAuthGuard>*/}
             <HomePage />
-         {/* </IsUserAuthGuard>*/}
         </Route>
         <Route path={"/myarticles"}>
-          <MyArticlesPage/>
+          <IsUserAuthGuard>
+            <MyArticlesPage/>
+          </IsUserAuthGuard>
         </Route>
-        <Route path={"/management"}>
-          <ArticleManagementPage/>
+        <Route path={"/articles/create"}>
+          <IsUserAuthGuard>
+            <ArticleManagementPage/>
+          </IsUserAuthGuard>
+        </Route>
+        <Route path={"/articles/:id/management"}>
+          <IsUserAuthGuard>
+            <ArticleManagementPage/>
+          </IsUserAuthGuard>
         </Route>
       </Switch>
   </>);

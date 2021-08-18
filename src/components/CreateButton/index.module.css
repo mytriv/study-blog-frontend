@@ -11,14 +11,15 @@
     padding: 160px 440px;
     position: relative;
     background-color: transparent;
+    cursor: pointer;
 }
 
-.button {
+/*.button {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%)
-}
+}*/
 
 .firstLine {
     white-space: nowrap;

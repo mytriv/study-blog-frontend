@@ -4,9 +4,11 @@ import {BlogTitle} from "../../components/BlogTitle";
 import styles from "./index.module.css"
 import {Button} from "../../components/Button";
 import {useHistory} from "react-router";
+import {useMyArticleLoad} from "./hooks/useMyArticlesLoad.hook";
 
 export const MyArticlesPage = () => {
 
+    const {articles} = useMyArticleLoad()
     const history = useHistory();
 
     const onManageClick = () => {
@@ -17,15 +19,22 @@ export const MyArticlesPage = () => {
     }
 
     return (
-        <div>
-            <div>
-                <Button title={"Manage >"} onClick={onManageClick}/>
-            </div>
-
             <div className={styles.page}>
+
                 <div className={styles.content}>
                     <BlogTitle
                         text={"My Articles"}/>
+                    {
+                        articles.map(article => {
+                            return (
+                                <div>
+                                    <div>{article.title}</div>
+                                    <div>{article.description}</div>
+                                    <Button title={"Manage >"} onClick={onManageClick}/>
+                                </div>
+                            );
+                        })
+                    }
 
                     <CreateArticleButton
                         onClick={onManageClick}
@@ -33,7 +42,7 @@ export const MyArticlesPage = () => {
                         secondLine={"Click here to create your one"}
                         plus={<Plus/>} />
                 </div>
-            </div>
+
             <Button title={"Back"}
                     onClick={onBackClick}/>
         </div>

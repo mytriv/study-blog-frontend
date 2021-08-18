@@ -20,7 +20,9 @@ export const IsUserAuthGuard = (props: any) => {
             history.replace("/auth/verify")
         }
         if ( me !== null && me.isEmailVerified === true && isLoaded === true) {
-            history.replace("/home")
+            if(history.location.pathname.includes("auth")){
+                history.replace("/home")
+            }
         }
     }, [me, pending, isLoaded, history]);
 
