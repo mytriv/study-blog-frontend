@@ -1,17 +1,15 @@
-import {useHistory} from "react-router";
-import {Button} from "../../components/Button";
-
+import { useHistory } from "react-router";
+import { Button } from "../../components/Button";
 
 export const HomePage = () => {
-    const history = useHistory();
+  const history = useHistory();
 
-    const onMyArticlesClick = () => {
-        history.replace("/myarticles");
-    }
-    return (
-        <div>
-            <Button title={"My Articles"}
-                    onClick={onMyArticlesClick}/>
-        </div>
-    );
-}
+  const onMyArticlesClick = () => {
+    history.replace("/myarticles");
+  };
+  return (
+    <div>
+      <Button title={"My Articles"} onClick={onMyArticlesClick} />
+    </div>
+  );
+};

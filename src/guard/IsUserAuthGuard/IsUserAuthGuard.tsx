@@ -1,35 +1,29 @@
-import {useSelector} from "react-redux";
-import {Store} from "../../store/store";
-import {useHistory} from "react-router";
-import {useEffect} from "react";
-import {User} from "../../api/user/models/user.model";
+import { useSelector } from "react-redux";
+import { Store } from "../../store/store";
+import { useHistory } from "react-router";
+import { useEffect } from "react";
+import { User } from "../../api/user/models/user.model";
 
 export const IsUserAuthGuard = (props: any) => {
+  const me = useSelector<Store>((state) => state.user.me) as User;
+  const pending = useSelector<Store>((state) => state.user.pending);
+  const isLoaded = useSelector<Store>((state) => state.user.isLoaded);
 
-    const me = useSelector<Store>( state => state.user.me) as User
-    const pending = useSelector<Store>( state => state.user.pending)
-    const isLoaded = useSelector<Store>( state => state.user.isLoaded)
+  const history = useHistory();
 
-    const history = useHistory();
+  useEffect(() => {
+    if (me === null && pending === false && isLoaded === true) {
+      history.replace("/auth/login");
+    }
+    if (me !== null && me.isEmailVerified === false && isLoaded === true) {
+      history.replace("/auth/verify");
+    }
+    if (me !== null && me.isEmailVerified === true && isLoaded === true) {
+      if (history.location.pathname.includes("auth")) {
+        history.replace("/home");
+      }
+    }
+  }, [me, pending, isLoaded, history]);
 
-    useEffect(() => {
-        if (me === null && pending === false && isLoaded === true) {
-            history.replace("/auth/login")
-        }
-        if ( me !== null && me.isEmailVerified === false && isLoaded === true) {
-            history.replace("/auth/verify")
-        }
-        if ( me !== null && me.isEmailVerified === true && isLoaded === true) {
-            if(history.location.pathname.includes("auth")){
-                history.replace("/home")
-            }
-        }
-    }, [me, pending, isLoaded, history]);
-
-
-    return (
-        <>
-            {props.children}
-        </>
-    );
-}
+  return <>{props.children}</>;
+};
