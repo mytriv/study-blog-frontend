@@ -9,7 +9,7 @@ import {ArticlesState} from "../../../store/articles/articlesSlice";
 export const useMyArticleLoad = () => {
     const dispatch = useDispatch()
     const [paginationParams, setPaginationParams] = useState<PaginationParams>({
-        take: 10,
+        take: 1000,
         skip: 0
     })
     const articleState = useSelector<Store>(state => state.articles) as ArticlesState

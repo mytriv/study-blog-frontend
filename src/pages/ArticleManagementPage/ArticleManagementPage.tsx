@@ -4,9 +4,13 @@ import { Input } from "../../components/Input";
 import styles from "./index.module.css";
 import { Button } from "../../components/Button";
 import { useEffect, useState } from "react";
-import { useHistory } from "react-router";
+import { useHistory, useParams } from "react-router";
 import axios from "axios";
 import { useArticleManageLoad } from "./hooks/useArticleManageLoad.hook";
+import { useDispatch } from "react-redux";
+import { createArticleThunk } from "../../store/article/createArticle.thunk";
+import { updateArticleThunk } from "../../store/article/updateArticle.thunk";
+import { articleSlice } from "../../store/article/articleSlice";
 
 export const ArticleManagementPage = () => {
   const [title, setTitle] = useState("");
@@ -15,6 +19,17 @@ export const ArticleManagementPage = () => {
   const [mainImageUrl, setMainImageUrl] = useState("");
 
   const { article } = useArticleManageLoad();
+  const { articleId } = useParams<{ articleId: string }>();
+  const dispatch = useDispatch();
+
+  const isCreationPage = !articleId;
+
+  useEffect(() => {
+    return () => {
+      // @ts-ignore
+      dispatch(articleSlice.actions.clearArticle());
+    };
+  }, []);
 
   useEffect(() => {
     if (!article) {
@@ -29,17 +44,19 @@ export const ArticleManagementPage = () => {
   const history = useHistory();
 
   const onSaveClick = async () => {
-    try {
-      await axios.post("/api/v1/articles", {
+    dispatch(createArticleThunk({ title, description, content, mainImageUrl }));
+  };
+
+  const onUpdateClick = async () => {
+    dispatch(
+      updateArticleThunk({
         title,
         description,
         content,
         mainImageUrl,
-      });
-      history.push("/myarticles");
-    } catch (error) {
-      console.log("error: ", error.response.data);
-    }
+        id: +articleId,
+      })
+    );
   };
 
   const onBackClick = () => {
@@ -88,6 +105,9 @@ export const ArticleManagementPage = () => {
                 value={mainImageUrl}
                 updateValue={setMainImageUrl}
               />
+              <div>
+                <img className={styles.img} src={mainImageUrl} alt="" />
+              </div>
             </div>
           </div>
 
@@ -109,7 +129,11 @@ export const ArticleManagementPage = () => {
           </div>
           <div className={styles.buttonBlock}>
             <div className={styles.buttonSave}>
-              <Button title={"Save"} onClick={onSaveClick} />
+              {isCreationPage ? (
+                <Button title={"Save"} onClick={onSaveClick} />
+              ) : (
+                <Button title={"Update"} onClick={onUpdateClick} />
+              )}
             </div>
             <div className={styles.buttonBack}>
               <Button title={"Back"} onClick={onBackClick} />

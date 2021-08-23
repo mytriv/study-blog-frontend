@@ -17,6 +17,36 @@ class ArticleService {
   getMyArticle(id: number): Promise<AxiosResponse<Article>> {
     return axios.get(`/api/v1/articles/my/${id}`, {});
   }
+
+  createMyArticle({
+    title,
+    description,
+    content,
+    mainImageUrl,
+  }: Omit<Article, "id">): Promise<AxiosResponse<Article>> {
+    return axios.post(`/api/v1/articles`, {
+      title,
+      description,
+      content,
+      mainImageUrl,
+    });
+  }
+
+  updateMyArticle({
+    title,
+    description,
+    content,
+    mainImageUrl,
+    id,
+  }: Article): Promise<AxiosResponse<Article>> {
+    return axios.put(`/api/v1/articles/${id}`, {
+      title,
+      description,
+      content,
+      mainImageUrl,
+      status: "Draft",
+    });
+  }
 }
 
 export const articleService = new ArticleService();

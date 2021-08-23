@@ -26,7 +26,7 @@ export const SignupPage = () => {
       getMe();
       history.push("/auth/login");
     } catch (error) {
-      console.log("error: ", error.response.data);
+      alert(error.response.data.message);
     }
   };
 
