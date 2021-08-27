@@ -24,30 +24,32 @@ export const MyArticlesPage = () => {
     <div className={styles.page}>
       <div className={styles.content}>
         <BlogTitle text={"My Articles"} />
-        <div>
+        <div className={styles.preview}>
           {articles.map((article) => {
             return (
               <div key={article.id}>
                 <div className={styles.title}>{article.title}</div>
                 <div className={styles.description}>{article.description}</div>
-                <Button
-                  title={"Manage >"}
-                  onClick={() => {
-                    onManageClick(article.id);
-                  }}
-                />
+                <div className={styles.button}>
+                  <Button
+                      title={"Manage >"}
+                      onClick={() => {
+                        onManageClick(article.id);
+                      }}
+                  />
+                </div>
               </div>
             );
           })}
         </div>
-
-        <CreateArticleButton
-          onClick={onCreateClick}
-          firstLine={"You have no articles yet"}
-          secondLine={"Click here to create your one"}
-          plus={<Plus />}
-        />
-
+        <div className={styles.button}>
+          <CreateArticleButton
+              onClick={onCreateClick}
+              firstLine={"You have no articles yet"}
+              secondLine={"Click here to create your one"}
+              plus={<Plus />}
+          />
+        </div>
         <Button title={"Back"} onClick={onBackClick} />
       </div>
     </div>

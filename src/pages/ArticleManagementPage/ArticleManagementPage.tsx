@@ -5,12 +5,12 @@ import styles from "./index.module.css";
 import { Button } from "../../components/Button";
 import { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
-import axios from "axios";
 import { useArticleManageLoad } from "./hooks/useArticleManageLoad.hook";
 import { useDispatch } from "react-redux";
 import { createArticleThunk } from "../../store/article/createArticle.thunk";
 import { updateArticleThunk } from "../../store/article/updateArticle.thunk";
 import { articleSlice } from "../../store/article/articleSlice";
+import { Textarea } from "../../components/Textarea";
 
 export const ArticleManagementPage = () => {
   const [title, setTitle] = useState("");
@@ -23,6 +23,10 @@ export const ArticleManagementPage = () => {
   const dispatch = useDispatch();
 
   const isCreationPage = !articleId;
+  const isImage = mainImageUrl.match(/.(jpg|jpeg|png|gif)$/i);
+  const isEmpty = (check: string) => {
+    return !check.trim().length;
+  };
 
   useEffect(() => {
     return () => {
@@ -78,20 +82,24 @@ export const ArticleManagementPage = () => {
                 placeholder={"Please enter article title"}
                 value={title}
                 updateValue={setTitle}
+
               />
+              <h6>{`Chars left: ${(140 - title.length)}`}</h6>
             </div>
           </div>
           <div className={styles.content}>
             <div className={styles.title}>
               <Titles text={"Article description: "} />
             </div>
-            <div className={styles.input}>
-              <Input
-                type={"text"}
-                placeholder={"Please enter article description"}
+            <div className={styles.textAreaDescription}>
+              <Textarea
+                name={"Description"}
+                id={"Description"}
+                placeholder={"Enter your description"}
                 value={description}
                 updateValue={setDescription}
               />
+              <h6>{`Chars left: ${(300 - description.length)}`}</h6>
             </div>
           </div>
           <div className={styles.content}>
@@ -106,7 +114,19 @@ export const ArticleManagementPage = () => {
                 updateValue={setMainImageUrl}
               />
               <div>
-                <img className={styles.img} src={mainImageUrl} alt="" />
+                {isImage ? (
+                  <img
+                    className={styles.img}
+                    src={mainImageUrl}
+                    alt="Article image"
+                  />
+                ) : isEmpty(mainImageUrl) ? (
+                  <div></div>
+                ) : (
+                  <div className={styles.content}>
+                    <p>Please enter a valid image url.</p>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -115,15 +135,13 @@ export const ArticleManagementPage = () => {
             <div className={styles.title}>
               <Titles text={"Article text: "} />
             </div>
-            <div className={styles.inputTextArea}>
-              <textarea
-                onChange={(event) => {
-                  setContent(event.target.value);
-                }}
-                value={content}
-                name="Article Text"
-                id="Article"
+            <div className={styles.textAreaContent}>
+              <Textarea
+                name={"Article"}
+                id={"Article"}
                 placeholder={"Enter your text"}
+                value={content}
+                updateValue={setContent}
               />
             </div>
           </div>

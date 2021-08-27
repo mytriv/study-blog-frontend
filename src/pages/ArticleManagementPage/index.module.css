@@ -10,6 +10,17 @@
     display: flex;
     justify-content: left;
     text-align: left;
+
+    margin-top: 20px;
+}
+
+.content p {
+    color: #D8000C;
+}
+
+h6 {
+    font-size: 8px;
+    margin-left: 10px;
 }
 
 .title {
@@ -20,6 +31,10 @@
     width: 635px;
 }
 
+.input input {
+    padding: 15px;
+}
+
 .img {
     margin-top: 20px;
     width: 100%;
@@ -28,13 +43,19 @@
     border-radius: 5px;
 }
 
-.inputTextArea textarea {
+.textAreaContent {
     width: 1200px;
+}
+
+.textAreaContent textarea {
+    width: 1180px;
     height: 500px;
 
-    padding-left: 10px;
-    padding-top: 10px;
-    border-radius: 10px;
+}
+
+.textAreaDescription textarea {
+    width: 620px;
+    height: 100px;
 }
 
 .buttonBlock {
