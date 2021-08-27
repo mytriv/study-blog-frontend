@@ -24,18 +24,18 @@ export const MyArticlesPage = () => {
     <div className={styles.page}>
       <div className={styles.content}>
         <BlogTitle text={"My Articles"} />
-        <div className={styles.preview}>
+        <div>
           {articles.map((article) => {
             return (
-              <div key={article.id}>
+              <div key={article.id} className={styles.preview}>
                 <div className={styles.title}>{article.title}</div>
                 <div className={styles.description}>{article.description}</div>
                 <div className={styles.button}>
                   <Button
-                      title={"Manage >"}
-                      onClick={() => {
-                        onManageClick(article.id);
-                      }}
+                    title={"Manage >"}
+                    onClick={() => {
+                      onManageClick(article.id);
+                    }}
                   />
                 </div>
               </div>
@@ -44,13 +44,15 @@ export const MyArticlesPage = () => {
         </div>
         <div className={styles.button}>
           <CreateArticleButton
-              onClick={onCreateClick}
-              firstLine={"You have no articles yet"}
-              secondLine={"Click here to create your one"}
-              plus={<Plus />}
+            onClick={onCreateClick}
+            firstLine={"You have no articles yet"}
+            secondLine={"Click here to create your one"}
+            plus={<Plus />}
           />
         </div>
-        <Button title={"Back"} onClick={onBackClick} />
+        <div className={styles.button}>
+          <Button title={"Back"} onClick={onBackClick} />
+        </div>
       </div>
     </div>
   );
