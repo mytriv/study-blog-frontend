@@ -69,92 +69,99 @@ export const ArticleManagementPage = () => {
 
   return (
     <div className={styles.page}>
-      <div className={styles.wrapper}>
-        <SmallLogo logo={"Plane Blog"} />
-        <div>
-          <div className={styles.content}>
-            <div className={styles.title}>
-              <Titles text={"Article title: "} />
-            </div>
-            <div className={styles.input}>
-              <Input
-                type={"text"}
-                placeholder={"Please enter article title"}
-                value={title}
-                updateValue={setTitle}
-
-              />
-              <h6>{`Chars left: ${(140 - title.length)}`}</h6>
-            </div>
-          </div>
-          <div className={styles.content}>
-            <div className={styles.title}>
-              <Titles text={"Article description: "} />
-            </div>
-            <div className={styles.textAreaDescription}>
-              <Textarea
-                name={"Description"}
-                id={"Description"}
-                placeholder={"Enter your description"}
-                value={description}
-                updateValue={setDescription}
-              />
-              <h6>{`Chars left: ${(300 - description.length)}`}</h6>
-            </div>
-          </div>
-          <div className={styles.content}>
-            <div className={styles.title}>
-              <Titles text={"Article image: "} />
-            </div>
-            <div className={styles.input}>
-              <Input
-                type={"text"}
-                placeholder={"Please enter image url"}
-                value={mainImageUrl}
-                updateValue={setMainImageUrl}
-              />
-              <div>
-                {isImage ? (
-                  <img
-                    className={styles.img}
-                    src={mainImageUrl}
-                    alt="Article image"
-                  />
-                ) : isEmpty(mainImageUrl) ? (
-                  <div></div>
-                ) : (
-                  <div className={styles.content}>
-                    <p>Please enter a valid image url.</p>
-                  </div>
-                )}
+      <div className={styles.container}>
+        <div className={styles.wrapper}>
+          <SmallLogo logo={"Plane Blog"} />
+          <div>
+            <div className={styles.content}>
+              <div className={styles.title}>
+                <Titles text={"Article title: "} />
+              </div>
+              <div className={styles.input}>
+                <Input
+                  type={"text"}
+                  placeholder={"Please enter article title"}
+                  value={title}
+                  updateValue={setTitle}
+                />
+                <div className={styles.count}>{`Chars left: ${
+                  140 - title.length
+                }`}</div>
               </div>
             </div>
-          </div>
+            <div className={styles.content}>
+              <div className={styles.title}>
+                <Titles text={"Article description: "} />
+              </div>
+              <div className={styles.textAreaDescription}>
+                <Textarea
+                  name={"Description"}
+                  id={"Description"}
+                  placeholder={"Enter your description"}
+                  value={description}
+                  updateValue={setDescription}
+                  rows={10}
+                />
+                <div className={styles.count}>{`Chars left: ${
+                  300 - description.length
+                }`}</div>
+              </div>
+            </div>
+            <div className={styles.content}>
+              <div className={styles.title}>
+                <Titles text={"Article image: "} />
+              </div>
+              <div className={styles.input}>
+                <Input
+                  type={"text"}
+                  placeholder={"Please enter image url"}
+                  value={mainImageUrl}
+                  updateValue={setMainImageUrl}
+                />
+                <div>
+                  {isImage ? (
+                    <img
+                      className={styles.img}
+                      src={mainImageUrl}
+                      alt="Article image"
+                    />
+                  ) : isEmpty(mainImageUrl) ? (
+                    <div></div>
+                  ) : (
+                    <div className={styles.content}>
+                      <p>Please enter a valid image url.</p>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
 
-          <div className={styles.contentCreateArticle}>
-            <div className={styles.title}>
-              <Titles text={"Article text: "} />
+            <div className={styles.contentCreateArticle}>
+              <div className={styles.title}>
+                <Titles text={"Article text: "} />
+              </div>
+              <div className={styles.textAreaContent}>
+                <Textarea
+                  name={"Article"}
+                  id={"Article"}
+                  placeholder={"Enter your text"}
+                  value={content}
+                  updateValue={setContent}
+                  rows={40}
+                />
+              </div>
             </div>
-            <div className={styles.textAreaContent}>
-              <Textarea
-                name={"Article"}
-                id={"Article"}
-                placeholder={"Enter your text"}
-                value={content}
-                updateValue={setContent}
-              />
-            </div>
-          </div>
-          <div className={styles.buttonBlock}>
-            <div className={styles.buttonSave}>
-              {isCreationPage ? (
-                <Button title={"Save"} onClick={onSaveClick} />
-              ) : (
-                <Button title={"Update"} onClick={onUpdateClick} />
-              )}
-            </div>
-            <div className={styles.buttonBack}>
-              <Button title={"Back"} onClick={onBackClick} />
+            <div className={styles.buttonBlock}>
+              <div className={styles.buttonSave}>
+                {isCreationPage ? (
+                  <Button title={"Save"} onClick={onSaveClick} />
+                ) : (
+                  <Button title={"Update"} onClick={onUpdateClick} />
+                )}
+              </div>
+              <div className={styles.buttonBack}>
+                <Button title={"Back"} onClick={onBackClick} />
+              </div>
             </div>
           </div>
         </div>

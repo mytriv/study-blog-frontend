@@ -1,4 +1,4 @@
-import styles from "./index.module.css"
+import styles from "./index.module.css";
 
 type Props = {
   name: string;
@@ -20,18 +20,17 @@ export const Textarea = ({
   value,
 }: Props) => {
   return (
-    <div className={styles.textarea}>
-      <textarea
-        name={name}
-        id={id}
-        cols={cols}
-        rows={rows}
-        placeholder={placeholder}
-        value={value}
-        onChange={(event) => {
-          updateValue(event.target.value);
-        }}
-      ></textarea>
-    </div>
+    <textarea
+      name={name}
+      id={id}
+      cols={cols}
+      rows={rows}
+      placeholder={placeholder}
+      value={value}
+      onChange={(event) => {
+        updateValue(event.target.value);
+      }}
+      className={styles.textarea}
+    ></textarea>
   );
 };
