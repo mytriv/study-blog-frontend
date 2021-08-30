@@ -15,12 +15,10 @@ export const CreateArticleButton = ({
   onClick,
 }: Props) => {
   return (
-    <div className={styles.button}>
       <button onClick={onClick} className={styles.wrapper}>
         <p className={styles.firstLine}>{firstLine}</p>
         {plus && <div className={styles.plus}>{plus}</div>}
         <p className={styles.secondLine}>{secondLine}</p>
       </button>
-    </div>
   );
 };

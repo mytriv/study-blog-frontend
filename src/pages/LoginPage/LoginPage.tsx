@@ -24,7 +24,7 @@ export const LoginPage = () => {
     try {
       await axios.post("/api/v1/auth/basic/login", { email, password });
       getMe();
-      history.push("/auth/login");
+      history.push("/home");
     } catch (error) {
       alert(error.response.data.message);
     }

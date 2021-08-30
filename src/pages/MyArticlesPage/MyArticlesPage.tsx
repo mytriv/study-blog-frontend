@@ -22,36 +22,39 @@ export const MyArticlesPage = () => {
 
   return (
     <div className={styles.page}>
-      <div className={styles.content}>
-        <BlogTitle text={"My Articles"} />
-        <div>
-          {articles.map((article) => {
-            return (
-              <div key={article.id} className={styles.preview}>
-                <div className={styles.title}>{article.title}</div>
-                <div className={styles.description}>{article.description}</div>
-                <div className={styles.button}>
-                  <Button
-                    title={"Manage >"}
-                    onClick={() => {
-                      onManageClick(article.id);
-                    }}
-                  />
-                </div>
-              </div>
-            );
-          })}
-        </div>
-        <div className={styles.button}>
-          <CreateArticleButton
-            onClick={onCreateClick}
-            firstLine={"You have no articles yet"}
-            secondLine={"Click here to create your one"}
-            plus={<Plus />}
-          />
-        </div>
-        <div className={styles.button}>
-          <Button title={"Back"} onClick={onBackClick} />
+      <div className={styles.container}>
+
+        <div className={styles.content}>
+          <BlogTitle text={"My Articles"} />
+          <div>
+            {articles.map((article) => {
+              return (
+                  <div key={article.id} className={styles.preview}>
+                    <div className={styles.title}>{article.title}</div>
+                    <div className={styles.description}>{article.description}</div>
+                    <div className={styles.button}>
+                      <Button
+                          title={"Manage >"}
+                          onClick={() => {
+                            onManageClick(article.id);
+                          }}
+                      />
+                    </div>
+                  </div>
+              );
+            })}
+          </div>
+          <div className={styles.button}>
+            <CreateArticleButton
+                onClick={onCreateClick}
+                firstLine={"You have no articles yet"}
+                secondLine={"Click here to create your one"}
+                plus={<Plus />}
+            />
+          </div>
+          <div className={styles.button}>
+            <Button title={"Back"} onClick={onBackClick} />
+          </div>
         </div>
       </div>
     </div>

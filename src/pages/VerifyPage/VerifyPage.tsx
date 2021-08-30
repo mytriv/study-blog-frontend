@@ -23,6 +23,10 @@ export const VerifyPage = () => {
     }
   };
 
+  const onLaterClick = () => {
+    history.push("/home");
+  };
+
   const updateCode = (verificationCode: string) => {
     setVerifyCode(verificationCode);
   };
@@ -45,6 +49,10 @@ export const VerifyPage = () => {
         </div>
         <div className={styles.btnWrapper}>
           <Button onClick={onVerifyClick} title="Go" />
+          <Button
+            title={"Skip"}
+            onClick={onLaterClick}
+          />
         </div>
       </div>
     </div>

@@ -16,8 +16,18 @@
 }
 
 .btnWrapper {
+    display: flex;
+    flex-direction: column;
+    max-width: 220px;
+    width: 100%;
+    margin: 0 auto;
     margin-top: 170px;
 }
+
+.btnWrapper > *:not(:last-child){
+    margin-bottom: 15px;
+}
+
 
 .verifyWrapper {
     display: flex;

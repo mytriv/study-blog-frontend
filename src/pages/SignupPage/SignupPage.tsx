@@ -23,8 +23,9 @@ export const SignupPage = () => {
   const onSignupClick = async () => {
     try {
       await axios.post("/api/v1/auth/basic/signup", { email, password });
+      await axios.post("/api/v1/auth/basic/login", { email, password });
       getMe();
-      history.push("/auth/login");
+      history.push("/auth/verification");
     } catch (error) {
       alert(error.response.data.message);
     }
